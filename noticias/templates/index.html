@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<main>
+    <section class="carrossel">
+        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-interval="4000" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{% static 'img/bg_carousel01.jpg' %}" class="d-block w-100 imagem-carrossel" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'img/bg_carousel02.jpg' %}" class="d-block w-100 imagem-carrossel" alt="...">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="titulo">
+        <h1 class="text-center fonte-titulo cor-especial pt-5">Informação a toda hora</h1>
+        <p class="text-center text-secondary pb-5">Tudo sobre política, cultura, tecnologia e esportes</p>
+    </section>
+
+    {% if noticias %}
+    <section class="container-fluid bg-light" id="noticias">
+        <div class="row justify-content-center">
+            {% for noticia in noticias %}
+            <a href="{% url 'noticia' noticia.id %}" class="card card-noticia card-largura p-0 m-4 col-12 col-md-4 col-xl-4">
+                {% if noticia.imagem == '' %}
+                <img src="{% static 'img/imagem_padrao.png' %}" class="card-img-top imagem-card" alt="...">
+                {% else %}
+                <img src="{{ noticia.imagem.url }}" class="card-img top imagem-card" alt="" ...">
+                {% endif %}
+                <div class="card-body">
+                    <footer class="card-text"><small class="text-muted">{{ noticia.categoria }}</small></footer>
+                    <p class="card-text pt-3">{{ noticia.titulo }}</p>
+                </div>
+            </a>
+            {% endfor %}
+
+        </div>
+    </section>
+    {% else %}
+        <div class=”container-fluid”>
+        <p>Não há notícias cadastradas</p>
+        </div>
+    {% endif %}	
+</main>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="w3-row-padding w3-padding-64 w3-container container">
+    <div class="w3-content">
+        <div class="w3-col" style="width:80%">
+            <h1>{{ noticia.titulo }}</h1>
+            <p class="text-muted pt-2">{{ noticia.resumo }}</p>
+            <div class="mb-4 text-muted">
+                <small>Por {{ noticia.autor }},</small>
+                <small>{{ noticia.data_publicacao }}</small>
+            </div>
+            <img src="{% static 'img/imagem_padrao.png' %}" class="imagem-noticia rounded mx-auto d-block" alt="...">
+            <p class="pt-5">{{ noticia.texto | linebreaks }}</p>
+
+            <div class="botao-voltar">
+                <a href="index.html" type="button" class="btn btn-light">Voltar</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
